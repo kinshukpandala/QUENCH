@@ -1,0 +1,221 @@
+<!-- <div className="min-h-screen bg-[#B197D8] p-4 flex flex-col">
+  {/* Navbar */}
+  <nav className="bg-[#1E1E2F] px-6 py-4 flex justify-between items-center rounded-md shadow-md mb-6">
+    <h1 className="text-2xl font-semibold text-white">
+      The <span className="text-indigo-400">Dashboard</span> (⌐■_■)
+    </h1>
+    <div>
+      <Link href="/">
+        <button className="text-sm text-white hover:text-indigo-400 transition-colors duration-200">
+          Home
+        </button>
+      </Link>
+    </div>
+  </nav>
+
+  <div className="flex-1 min-w-[300px] bg-gradient-to-br from-indigo-400 to-pink-400 text-white rounded-lg p-6 shadow-md">
+    <h2 className="text-lg font-semibold mb-4">🎉 Generate Manual QR</h2>
+    <div className="grid grid-cols-2 gap-3 mb-4">
+      {[10, 20, 50, 100].map((amt) => (
+        <button
+          key={amt}
+          onClick={() => generateQR(amt)}
+          className="aspect-square flex justify-center items-center rounded-md bg-[#1E1E2F] hover:bg-[#2A2A40] text-sm font-semibold transition"
+        >
+          ₹{amt}
+        </button>
+      ))}
+    </div>
+    {qrValue && (
+      <div className="flex justify-center">
+        <div className="bg-white p-2 rounded shadow">
+          <QRCode value={qrValue} size={128} />
+        </div>
+      </div>
+    )}
+  </div>
+
+  'use client';
+
+  import React, { useState } from 'react';
+  import QRCode from 'react-qr-code';
+  import { Line } from 'react-chartjs-2';
+  import 'chart.js/auto';
+  import Link from 'next/link'; // For routing links
+  
+  export default function Home() {
+    const [qrValue, setQrValue] = useState('');
+    const [status, setStatus] = useState(false);
+    const [logs, setLogs] = useState([]);
+  
+    const generateQR = (amount: number) => {
+      const upiString = `upi://pay?pa=kinshuk2005@okhdfcbank&pn=Kinshuk&am=${amount}&cu=INR`;
+      setQrValue(upiString);
+      addLog(`Generated QR for ₹${amount}`);
+    };
+  
+    const addLog = (log: string) => {
+      setLogs((prevLogs) => [log, ...prevLogs]);
+    };
+  
+    const verifyAndDispense = () => {
+      addLog('✅ Dispensed water after verification');
+    };
+  
+    const toggleStatus = () => {
+      setStatus(!status);
+      addLog(`Status changed to ${!status ? 'Online' : 'Offline'}`);
+    };
+  
+    const chartData = {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      datasets: [
+        {
+          label: 'Revenue (₹)',
+          data: [100, 200, 300, 250, 400],
+          borderColor: '#4f46e5',
+          backgroundColor: '#c7d2fe',
+          tension: 0.3,
+        },
+        {
+          label: 'Water Dispensed (L)',
+          data: [50, 75, 60, 90, 80],
+          borderColor: '#10b981',
+          backgroundColor: '#6ee7b7',
+          tension: 0.3,
+        },
+      ],
+    };
+  
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        {/* ---------------- Navbar/Header Updated ---------------- */}
+        <nav className="bg-[#1E1E2F] px-6 py-4 flex justify-between items-center rounded-md shadow-md">
+          {/* Left side - Title */}
+          <h1 className="text-2xl font-semibold text-white">
+            The <span className="text-indigo-400">Dashboard</span> (⌐■_■)
+          </h1>
+  
+          {/* Right side - about Button */}
+          <div>
+            <Link href="/">
+              <button className="text-sm text-white hover:text-indigo-400 transition-colors duration-200">
+                About
+              </button>
+            </Link>
+          </div>
+        </nav>
+  
+        {/* ---------------- Main Container ---------------- */}
+        <div className="flex flex-col max-w-7xl mx-auto w-full space-y-6 p-6">
+          {/* Row 1: Top Area */}
+          <div className="flex justify-between">
+      
+  
+            {/* Status Indicator */}
+            <div className="bg-white rounded-lg shadow-md p-4 w-64 flex flex-col justify-between">
+              <h3 className="text-sm font-semibold text-gray-500 mb-2">Status Indicator</h3>
+              <div className="flex items-center space-x-3">
+                <div className={`w-4 h-4 rounded-full ${status ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                <span className="text-sm font-medium">{status ? 'System Online' : 'System Offline'}</span>
+              </div>
+              <button
+                onClick={toggleStatus}
+                className={`mt-4 w-full py-2 rounded-md text-sm font-semibold ${
+                  status
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                }`}
+                disabled={status}
+              >
+                {status ? 'Online' : 'Activate'}
+              </button>
+            </div>
+          </div>
+  
+          {/* Row 2: Left + Center + Right */}
+          <div className="grid grid-cols-12 gap-6">
+            {/* Left Sidebar */}
+            <div className="col-span-3 flex flex-col space-y-6">
+              {/* Profile Card */}
+              <div className="bg-white rounded-lg shadow-md p-4 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="w-20 h-20 rounded-full bg-gray-200"></div>
+                </div>
+                <p className="text-sm font-semibold text-gray-800">Kinshuk Pandala</p>
+                <p className="text-xs text-gray-500">kinshuk2005@gmail.com</p>
+                <p className="text-xs text-gray-500">+91 9448858537</p>
+                <p className="text-xs text-gray-500">kinshuk2005@okhdfcbank</p>
+              </div>
+  
+              {/* Transaction Logs */}
+              <div className="bg-white rounded-lg shadow-md p-4 flex-1 overflow-y-auto">
+                <h3 className="text-sm font-semibold text-gray-500 mb-2">Transaction Logs</h3>
+                <ul className="text-xs text-gray-600 space-y-1">
+                  {logs.map((log, index) => (
+                    <li key={index}>• {log}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+  
+            {/* Center Content */}
+            <div className="col-span-6 flex flex-col space-y-6">
+              {/* Total Water + Revenue */}
+              <div className="flex space-x-6">
+                <div className="bg-white rounded-lg shadow-md p-6 flex-1 text-center">
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Total Water Dispensed</h3>
+                  <p className="text-3xl font-bold text-blue-600">1703 L</p>
+                </div>
+                <div className="bg-white rounded-lg shadow-md p-6 flex-1 text-center">
+                  <h3 className="text-sm font-semibold text-gray-500 mb-2">Revenue Generated</h3>
+                  <p className="text-3xl font-bold text-green-600">₹6680</p>
+                </div>
+              </div>
+  
+              {/* Analytics */}
+              <div className="bg-white rounded-lg shadow-md p-6 flex-1">
+                <h3 className="text-sm font-semibold text-gray-500 mb-4">Analytics</h3>
+                <Line data={chartData} />
+              </div>
+            </div>
+  
+            {/* Right Sidebar */}
+            <div className="col-span-3 flex flex-col space-y-6">
+              {/* Generate Manual QR */}
+              <div className="flex-1 min-w-[300px] bg-gradient-to-br from-indigo-400 to-pink-400 text-white rounded-lg p-6 shadow-md">
+              <h2 className="text-lg font-semibold mb-4">🎉 Generate Manual QR</h2>
+                <div className="grid grid-cols-2 gap-3">
+                  {[10, 20, 50, 100].map((amt) => (
+                    <button
+                      key={amt}
+                      onClick={() => generateQR(amt)}
+                      className="aspect-square flex justify-center items-center rounded-md bg-gray-100 hover:bg-gray-200 text-sm font-semibold text-gray-800"
+                    >
+                      ₹{amt}
+                    </button>
+                  ))}
+                </div>
+                {qrValue && (
+                  <div className="flex justify-center">
+                    <div className="bg-white p-2 rounded shadow">
+                      <QRCode value={qrValue} size={128} />
+                    </div>
+                  </div>
+                )}
+              </div>
+  
+              {/* Verify and Dispense */}
+              <button
+                onClick={verifyAndDispense}
+                className="w-full py-3 rounded-md text-sm font-semibold bg-green-600 hover:bg-green-700 text-white"
+              >
+                Verify and Dispense
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+   -->

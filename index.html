@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QUENCH Web App</title>+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Profile Section (View Only) -->
+      <div class="card profile-card">
+        <div class="profile-header">
+          <span class="profile-title">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#9ca3af">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8V22h19.2v-2.8c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+            Your Details
+          </span>
+        </div>
+        
+        <div class="profile-field">
+          <label>Name</label>
+          <span id="profileName">Kinshuk Pandala</span>
+        </div>
+        
+        <div class="profile-field">
+          <label>Email</label>
+          <span id="profileEmail">kinshuk2005@gmail.com</span>
+        </div>
+        
+        <div class="profile-field">
+          <label>Phone</label>
+          <span id="profilePhone">+91 9448858537</span>
+        </div>
+        
+        <div class="profile-field">
+          <label>UPI ID</label>
+          <span id="profileUPI">kinshuk2005@okhdfcbank</span>
+        </div>
+      </div>
+
+      <!-- Transaction Logs -->
+      <div class="card">
+        <h2>Transaction Logs</h2>
+        <div class="transaction-logs" id="transactionLogs"></div>
+        <button id="addLogButton">Add Log (Test)</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="top-metrics">
+        <div class="card">
+          <h3>Total Water Dispensed</h3>
+          <p class="metric-value">1703 L</p>
+        </div>
+        <div class="card">
+          <h3>Revenue Generated</h3>
+          <p class="metric-value">₹6680</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Analytics</h3>
+        <canvas id="analyticsChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="rightbar">
+      <div class="card">
+        <h3>Status Indicator</h3>
+        <div class="status">
+          <div class="status-indicator status-offline" id="statusDot"></div>
+          <span id="statusText">System Offline</span>
+          <button id="toggleStatus">Toggle</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Generate Manual QR</h3>
+        <div class="qr-buttons">
+          <button onclick="generateQR(10)">₹10</button>
+          <button onclick="generateQR(20)">₹20</button>
+          <button onclick="generateQR(50)">₹50</button>
+          <button onclick="generateQR(100)">₹100</button>
+        </div>
+        <div id="qrOutput"></div>
+      </div>
+      <button class="dispense-button" onclick="verifyAndDispense()">Verify and Dispense</button>
+    </div>
+  </div> <!-- END of .container -->
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
