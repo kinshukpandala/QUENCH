@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QUENCH Web App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="fade-in">
+  <header>
+    <h2>The Dashboard (⌐■_■)</h2>
+    <div class="header-right">
+      <button id="themeToggle">🌓</button>
+      <a href="about.html"><button>About</button></a>
+      <a href="admin.html"><button>Admin Tools</button></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Left Column -->
+    <section class="column left">
+      <div class="card">
+        <h2>Admin Details</h2>
+        <p>name: Kinshuk Pandala</p>
+        <p>email: kinshuk2005@gmail.com</p>
+        <p>phone: +91 9448858537</p>
+        <p>UPI ID: kinshuk2005@okhdfcbank</p>
+      </div>
+
+      <div class="card">
+        <h2>Log Monitor</h2>
+        <ul>
+          <li>Txn #1 – ₹10</li>
+          <li>Txn #2 – ₹20</li>
+          <li>Txn #3 – ₹50</li>
+        </ul>
+        <button>View All</button>
+      </div>
+
+      <div class="card">
+        <div class="water-level">
+          <span class="drop">💧</span>
+          <span>45%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 45%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Middle Column -->
+    <section class="column middle">
+      <div class="card stats">
+        <h2>Live Stats</h2>
+        <div class="stats-grid">
+          <div>Transactions: <strong>23</strong></div>
+          <div>Flow: <strong>30 ml/s</strong></div>
+          <div>Revenue: <strong>₹800</strong></div>
+          <div>Dispensed: <strong>12L</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Analytics</h2>
+        <div class="analytics-filter">
+          <button>1D</button><button>3D</button><button>5D</button>
+          <button>1W</button><button>2W</button>
+        </div>
+        <div class="analytics-chart">
+          <div class="bar" style="height: 50%;"></div>
+          <div class="bar" style="height: 30%;"></div>
+          <div class="bar" style="height: 60%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column -->
+    <section class="column right">
+      <div class="card center-text">
+        <strong id="datetime"></strong>
+      </div>
+
+      <div class="card">
+        <h2>Generate Manual QR</h2>
+        <div class="qr-grid">
+          <button class="qr-btn">₹10</button>
+          <button class="qr-btn">₹20</button>
+          <button class="qr-btn">₹50</button>
+          <button class="qr-btn">₹100</button>
+        </div>
+        <button class="verify-btn">Verify and Disperse</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ABOUT MODAL -->
+  <div id="aboutModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>About QUENCH</h2>
+      <p><strong>QUENCH</strong> is a smart IoT-based water dispensing system with real-time UPI transaction verification and analytics. Built by engineers for a smarter future 💧</p>
+    </div>
+  </div>
+
+  <!-- SETTINGS / ADMIN MODAL -->
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Admin Tools</h2>
+      <form id="adminForm">
+        <label>Name: <input type="text" value="Kinshuk Pandala"></label>
+        <label>Email: <input type="email" value="kinshuk2005@gmail.com"></label>
+        <label>Phone: <input type="text" value="+91 9448858537"></label>
+        <label>UPI ID: <input type="text" value="kinshuk2005@okhdfcbank"></label>
+        <button type="submit">Save</button>
+        <button type="button" class="danger">Reset System</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
