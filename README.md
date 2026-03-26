@@ -27,11 +27,11 @@ This system is designed for **reliability**, **modularity**, and **remote monito
 
 ## Hardware Used:
 
-- ** ESP32 Dev Board **
-- ** ILI9341 TFT Display **
-- ** Servo Motor **
-- ** Water level Sensor **
-- ** Wifi for MQTT communication **
+- **ESP32 Dev Board**
+- **ILI9341 TFT Display**
+- **Servo Motor**
+- **Water level Sensor**
+- **Wifi for MQTT communication**
 
 ## Currently Working on:
 
