@@ -1,15 +1,11 @@
 // this is the script for generating a qr code only 
 // changes that needs to be made is to make the amount section a variable based on the amount entered 
 
-
-
-
-
 #include <LCDWIKI_GUI.h>  // Core graphics library
 #include <LCDWIKI_SPI.h>  // SPI communication for TFT
 #include "qrcode.h"       // QR code generation library
 
-// TFT Display Configuration
+// TFT Display Configuration (using SPI protocol for display output)
 #define MODEL ILI9341
 #define CS    A5    
 #define CD    A3
@@ -30,7 +26,7 @@ LCDWIKI_SPI mylcd(MODEL, CS, CD, MISO, MOSI, RST, SCK, LED);
 #define SCREEN_HEIGHT 320  // Adjust based on actual TFT display height
 
 // UPI Payment String
-const char* upi_link = "upi://pay?pa=kinshuk2005@okhdfcbank&pn=QUENCH&am=10&cu=INR";
+const char* upi_link = "upi://pay?pa=user@bankname&pn=QUENCH&am=10&cu=INR";
 
 // QR Code settings
 QRCode qrcode;
